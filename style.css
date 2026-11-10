@@ -8,55 +8,82 @@ body {
   background-color: #09090a;
   color: white;
 
-  height: 100vh;
+  min-height: 100vh;
 }
 
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
 
   padding: 48px;
 
   position: fixed;
+  top: 0;
   width: 100%;
+  z-index: 20;
+  background-color: #09090a;
 }
 
-
-button {
-  padding: 16px 24px;
-  border-radius: 8px;
-  border: 3px solid #fb7185;
-  background-color: transparent;
-  color: white;
-
+/* filtro de mês */
+.month-filter {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
+}
 
-  font-family: "inter";
+.month-filter select,
+.month-filter .nav {
+  height: 48px;
+  border-radius: 8px;
+  border: 2px solid #27272a;
+  background-color: #18181b;
+  color: white;
+
+  font-family: "Inter", sans-serif;
   font-weight: 600;
   font-size: 16px;
-  line-height: 125%;
+  cursor: pointer;
 }
 
-button svg path {
-  stroke: #fb7185;
+.month-filter select {
+  padding: 0 12px;
 }
 
+.month-filter .nav {
+  width: 48px;
+  font-size: 24px;
+  line-height: 1;
+  color: #fb7185;
+}
+
+.month-filter select:hover,
+.month-filter .nav:hover,
+.month-filter select:focus-visible,
+.month-filter .nav:focus-visible {
+  border-color: #fb7185;
+  outline: none;
+}
+
+/* grade */
 form {
   display: flex;
 
   padding: 182px 48px 48px;
-  width: fit-content;
+  width: 100%;
 }
 
 .habits {
   margin-top: 60px;
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
 
   gap: 24px;
+  position: relative;
+  z-index: 10;
 }
 
 .habit {
@@ -72,8 +99,13 @@ form {
 
 .days {
   display: flex;
-  gap: 48px;
+  gap: 16px;
   margin-left: 32px;
+  padding-bottom: 16px;
+
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-color: #27272a transparent;
 }
 
 .day {
@@ -82,16 +114,36 @@ form {
   gap: 24px;
 }
 
-.day div {
-  margin-bottom: 8px;
+.day .date {
+  height: 36px;
 
-  font-family: "Roboto Mono";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+
+  font-family: "Roboto Mono", monospace;
   font-size: 20px;
-  line-height: 125%;
+  line-height: 1;
 
   color: #a1a1aa;
+}
 
-  text-align: center;
+.day .date span {
+  margin-bottom: 4px;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #52525b;
+}
+
+.day.today .date,
+.day.today .date span {
+  color: #fb7185;
+}
+
+.day.future input:not(:checked) {
+  opacity: 0.5;
 }
 
 input {
@@ -100,11 +152,17 @@ input {
 
   width: 64px;
   height: 64px;
+  flex-shrink: 0;
 
   border: 2px solid #27272a;
   border-radius: 8px;
 
   background: #18181b;
+  cursor: pointer;
+}
+
+input:hover {
+  border-color: #3f3f46;
 }
 
 input:checked {
@@ -112,8 +170,52 @@ input:checked {
   border: 4px solid #fd8c9d;
 }
 
+/* tooltip dos hábitos */
+.habit {
+  position: relative;
+  cursor: help;
+}
+
+.habit::after {
+  content: attr(data-label);
+
+  position: absolute;
+  left: calc(100% + 12px);
+  top: 50%;
+  transform: translate(-4px, -50%);
+  z-index: 10;
+
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #fb7185;
+  background: #18181b;
+  color: white;
+
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.habit:hover::after {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
 @media (max-width: 570px) {
-  button div {
-    display: none;
+  header {
+    padding: 24px 16px;
+  }
+
+  form {
+    padding: 200px 16px 32px;
+  }
+
+  .days {
+    margin-left: 16px;
   }
 }

@@ -85,59 +85,38 @@
         />
       </svg>
 
-      <button>
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 20 20"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M3.125 10H16.875"
-            stroke="#8B5CF6"
-            stroke-width="1.88"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M10 3.125V16.875"
-            stroke="#8B5CF6"
-            stroke-width="1.88"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-
-        <div>Registrar o meu dia</div>
-      </button>
+      <div class="month-filter">
+        <button type="button" class="nav" id="prev-month" aria-label="Mês anterior">‹</button>
+        <select id="month-select" aria-label="Mês"></select>
+        <select id="year-select" aria-label="Ano"></select>
+        <button type="button" class="nav" id="next-month" aria-label="Próximo mês">›</button>
+      </div>
     </header>
 
     <form>
       <div class="habits">
-        <div class="habit" data-name="run">
-          <img src="assets/running.svg" alt="Running" />
+        <div class="habit" data-name="run" data-label="Academia">
+          <img src="assets/gym.svg" alt="Academia" />
         </div>
-        <div class="habit" data-name="water">
-          <img src="assets/water.svg" alt="Water" />
+        <div class="habit" data-name="water" data-label="Beber água">
+          <img src="assets/water-glass.svg" alt="Beber água" />
         </div>
-        <div class="habit" data-name="food">
-          <img src="assets/eating.svg" alt="Food" />
+        <div class="habit" data-name="journal" data-label="Estudar">
+          <img src="assets/study.svg" alt="Estudar" />
         </div>
-        <div class="habit" data-name="journal">
-          <img src="assets/studying.svg" alt="Journal" />
+        <div class="habit" data-name="work" data-label="Trabalhar">
+          <img src="assets/work.svg" alt="Trabalhar" />
         </div>
-        <div class="habit" data-name="takePills">
-          <img src="assets/remedy.svg" alt="Pills" />
+        <div class="habit" data-name="takePills" data-label="Tomar remédio">
+          <img src="assets/pills.svg" alt="Tomar remédio" />
         </div>
-        <div class="habit" data-name="sleep">
-          <img src="assets/sleep.svg" alt="Sleep" />
+        <div class="habit" data-name="sleep" data-label="Dormir bem">
+          <img src="assets/moon.svg" alt="Dormir bem" />
         </div>
       </div>
 
       <div class="days"></div>
     </form>
   </body>
-  <script src="https://cdn.jsdelivr.net/gh/maykbrito/libs/NLWSetup/source/NLWSetup.js"></script>
   <script src="./script.js"></script>
 </html>
